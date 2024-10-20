@@ -1,6 +1,6 @@
 # SalesTrackingManagementAPI
 
-The **SalesTrackingManagementAPI** project was generated using the **NArch Gen** template. This project serves as a case study to demonstrate the key functionalities of a sales tracking system.
+The **SalesTrackingManagementAPI** project was generated using the **NArch Gen** template. This project serves as a case study to demonstrate the key functionalities of a sales tracking system. The case for this project was provided by **IstanbulKodluyor**.
 
 ## Key Features
 
@@ -10,3 +10,9 @@ The **SalesTrackingManagementAPI** project was generated using the **NArch Gen**
 - **Customer Information Management**: Enables updating customer details, such as contact information and other relevant data.
 
 This API is designed to showcase essential business functions for managing sales and inventory while keeping customer information up to date.
+
+## NArch Gen Template
+
+To learn more about the **NArch Gen** template and use it in your own projects, visit:
+
+**Project Link**: [https://github.com/kodlamaio-projects/nArchitecture](https://github.com/kodlamaio-projects/nArchitecture)
