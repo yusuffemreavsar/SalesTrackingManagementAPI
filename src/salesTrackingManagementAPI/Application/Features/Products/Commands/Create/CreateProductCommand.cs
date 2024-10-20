@@ -15,7 +15,6 @@ public class CreateProductCommand : IRequest<CreatedProductResponse>, ISecuredRe
     public string Description { get; set; }
     public int StockQuantity { get; set; }
     public decimal Price { get; set; }
-
     public string[] Roles => [Admin, Write, ProductsOperationClaims.Create];
 
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, CreatedProductResponse>
