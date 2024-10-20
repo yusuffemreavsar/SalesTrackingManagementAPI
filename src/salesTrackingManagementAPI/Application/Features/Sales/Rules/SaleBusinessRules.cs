@@ -6,6 +6,7 @@ using NArchitecture.Core.Localization.Abstraction;
 using Domain.Entities;
 using Application.Features.Users.Constants;
 using Application.Features.Products.Constants;
+using Application.Features.Customers.Constants;
 
 namespace Application.Features.Sales.Rules;
 
@@ -13,14 +14,13 @@ public class SaleBusinessRules : BaseBusinessRules
 {
     private readonly ISaleRepository _saleRepository;
     private readonly ILocalizationService _localizationService;
-    private readonly IUserRepository _userRepository;
+    private readonly ICustomerRepository _customerRepository;
     private readonly IProductRepository _productRepository;
 
-    public SaleBusinessRules(ISaleRepository saleRepository, ILocalizationService localizationService, IUserRepository userRepository, IProductRepository productRepository)
+    public SaleBusinessRules(ISaleRepository saleRepository, ILocalizationService localizationService, IProductRepository productRepository)
     {
         _saleRepository = saleRepository;
         _localizationService = localizationService;
-        _userRepository = userRepository;
         _productRepository = productRepository;
     }
 
@@ -46,16 +46,16 @@ public class SaleBusinessRules : BaseBusinessRules
         await SaleShouldExistWhenSelected(sale);
     }
 
-    public async Task UserShouldExist(Guid userId)
+    public async Task CustomerShouldExist(Guid customerId)
     {
-        var user = await _userRepository.GetAsync(
-            predicate: user => user.Id == userId,
+        var customer = await _customerRepository.GetAsync(
+            predicate: customer => customer.Id == customerId,
             enableTracking: false
             );
 
-        if(user == null)
+        if(customer == null)
         {
-            await throwBusinessException(UsersMessages.UserDontExists);
+            await throwBusinessException(CustomersBusinessMessages.CustomerNotExists);
         }
     }
     public async Task ProductShouldExist(Guid productId)

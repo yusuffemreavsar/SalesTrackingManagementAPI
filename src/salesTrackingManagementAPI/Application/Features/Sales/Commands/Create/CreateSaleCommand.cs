@@ -29,6 +29,8 @@ public class CreateSaleCommand : IRequest<CreatedSaleResponse>
 
         public async Task<CreatedSaleResponse> Handle(CreateSaleCommand request, CancellationToken cancellationToken)
         {
+            await _saleBusinessRules.CustomerShouldExist(request.CustomerId);
+            await _saleBusinessRules.ProductShouldExist(request.ProductId);
             Sale sale = _mapper.Map<Sale>(request);
 
             await _saleRepository.AddAsync(sale);
