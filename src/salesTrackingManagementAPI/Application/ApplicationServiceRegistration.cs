@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using Application.Services.AuthenticatorService;
 using Application.Services.AuthService;
 using Application.Services.UsersService;
@@ -19,6 +19,9 @@ using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
 using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.DependencyInjection;
+using Application.Services.Customers;
+using Application.Services.Products;
+using Application.Services.Sales;
 
 namespace Application;
 
@@ -59,6 +62,9 @@ public static class ApplicationServiceRegistration
 
         services.AddSecurityServices<Guid, int>();
 
+        services.AddScoped<ICustomerService, CustomerManager>();
+        services.AddScoped<IProductService, ProductManager>();
+        services.AddScoped<ISaleService, SaleManager>();
         return services;
     }
 
