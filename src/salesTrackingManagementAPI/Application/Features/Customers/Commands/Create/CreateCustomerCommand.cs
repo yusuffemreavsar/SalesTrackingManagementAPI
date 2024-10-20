@@ -27,6 +27,7 @@ public class CreateCustomerCommand : IRequest<CreatedCustomerResponse>
 
         public async Task<CreatedCustomerResponse> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
+            await _customerBusinessRules.UserShouldExist(request.UserId);
             Customer customer = _mapper.Map<Customer>(request);
 
             await _customerRepository.AddAsync(customer);
