@@ -12,6 +12,9 @@ namespace Application.Features.Auth.Commands.Register;
 public class RegisterCommand : IRequest<RegisteredResponse>
 {
     public UserForRegisterDto UserForRegisterDto { get; set; }
+    public string FirstName { get; set; } = string.Empty;
+    public string LastName { get; set; } = string.Empty;
+
     public string IpAddress { get; set; }
 
     public RegisterCommand()

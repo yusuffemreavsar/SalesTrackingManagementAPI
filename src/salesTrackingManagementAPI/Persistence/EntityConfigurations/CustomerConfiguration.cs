@@ -12,7 +12,6 @@ public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
 
         builder.Property(c => c.Id).HasColumnName("Id").IsRequired();
         builder.Property(c => c.UserId).HasColumnName("UserId");
-        builder.Property(c => c.User).HasColumnName("User");
         builder.Property(c => c.PhoneNumber).HasColumnName("PhoneNumber");
         builder.Property(c => c.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(c => c.UpdatedDate).HasColumnName("UpdatedDate");
