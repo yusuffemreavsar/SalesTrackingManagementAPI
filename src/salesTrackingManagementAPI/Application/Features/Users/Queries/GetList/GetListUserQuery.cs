@@ -10,11 +10,11 @@ using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Features.Users.Queries.GetList;
 
-public class GetListUserQuery : IRequest<GetListResponse<GetListUserListItemDto>>, ISecuredRequest
+public class GetListUserQuery : IRequest<GetListResponse<GetListUserListItemDto>>
 {
     public PageRequest PageRequest { get; set; }
 
-    public string[] Roles => [UsersOperationClaims.Read];
+ 
 
     public GetListUserQuery()
     {

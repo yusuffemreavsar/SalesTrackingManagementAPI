@@ -9,13 +9,13 @@ using static Application.Features.Products.Constants.ProductsOperationClaims;
 
 namespace Application.Features.Products.Commands.Create;
 
-public class CreateProductCommand : IRequest<CreatedProductResponse>, ISecuredRequest
+public class CreateProductCommand : IRequest<CreatedProductResponse>
 {
     public string Name { get; set; }
     public string Description { get; set; }
     public int StockQuantity { get; set; }
     public decimal Price { get; set; }
-    public string[] Roles => [Admin, Write, ProductsOperationClaims.Create];
+   
 
     public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, CreatedProductResponse>
     {

@@ -17,21 +17,25 @@ public class CreateSaleCommand : IRequest<CreatedSaleResponse>
     {
         private readonly IMapper _mapper;
         private readonly ISaleRepository _saleRepository;
+        private readonly IProductRepository _productRepository;
         private readonly SaleBusinessRules _saleBusinessRules;
 
         public CreateSaleCommandHandler(IMapper mapper, ISaleRepository saleRepository,
-                                         SaleBusinessRules saleBusinessRules)
+                                         SaleBusinessRules saleBusinessRules, IProductRepository productRepository)
         {
             _mapper = mapper;
             _saleRepository = saleRepository;
             _saleBusinessRules = saleBusinessRules;
+            _productRepository = productRepository;
         }
 
         public async Task<CreatedSaleResponse> Handle(CreateSaleCommand request, CancellationToken cancellationToken)
         {
+            Sale sale = _mapper.Map<Sale>(request);
             await _saleBusinessRules.CustomerShouldExist(request.CustomerId);
             await _saleBusinessRules.ProductShouldExist(request.ProductId);
-            Sale sale = _mapper.Map<Sale>(request);
+            await _saleBusinessRules.ProductQuantityUpdate(request.ProductId, request.Quantity);
+            
 
             await _saleRepository.AddAsync(sale);
 

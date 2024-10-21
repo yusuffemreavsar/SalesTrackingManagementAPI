@@ -9,11 +9,9 @@ using static Application.Features.Products.Constants.ProductsOperationClaims;
 
 namespace Application.Features.Products.Queries.GetById;
 
-public class GetByIdProductQuery : IRequest<GetByIdProductResponse>, ISecuredRequest
+public class GetByIdProductQuery : IRequest<GetByIdProductResponse>
 {
     public Guid Id { get; set; }
-
-    public string[] Roles => [Admin, Read];
 
     public class GetByIdProductQueryHandler : IRequestHandler<GetByIdProductQuery, GetByIdProductResponse>
     {

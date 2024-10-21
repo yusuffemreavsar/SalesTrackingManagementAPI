@@ -17,11 +17,12 @@ public class SaleBusinessRules : BaseBusinessRules
     private readonly ICustomerRepository _customerRepository;
     private readonly IProductRepository _productRepository;
 
-    public SaleBusinessRules(ISaleRepository saleRepository, ILocalizationService localizationService, IProductRepository productRepository)
+    public SaleBusinessRules(ISaleRepository saleRepository, ILocalizationService localizationService, IProductRepository productRepository, ICustomerRepository customerRepository)
     {
         _saleRepository = saleRepository;
         _localizationService = localizationService;
         _productRepository = productRepository;
+        _customerRepository = customerRepository;
     }
 
     private async Task throwBusinessException(string messageKey)
@@ -69,6 +70,12 @@ public class SaleBusinessRules : BaseBusinessRules
         {
             await throwBusinessException(ProductsBusinessMessages.ProductNotExists);
         }
+    }
+    public async Task ProductQuantityUpdate(Guid id, int quantity)
+    {
+        var product = await _productRepository.GetAsync(p => p.Id == id);
+        product.StockQuantity = product.StockQuantity - quantity;
+        await _productRepository.UpdateAsync(product);
     }
 
 
